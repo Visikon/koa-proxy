@@ -39,7 +39,7 @@ module.exports = function(options) {
         return yield* next;
       }
     }
-    
+
     var parsedBody = getParsedBody(this);
 
     var opt = {
@@ -53,6 +53,7 @@ module.exports = function(options) {
 
     // set 'Host' header to options.host (without protocol prefix), strip trailing slash
     if (options.host) opt.headers.host = options.host.slice(options.host.indexOf('://')+3).replace(/\/$/,'');
+    if (options.customHost) opt.headers.host = options.customHost
 
     if (options.requestOptions) {
       if (typeof options.requestOptions === 'function') {
